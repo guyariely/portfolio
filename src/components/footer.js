@@ -29,7 +29,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
       /* Adjust width of links wrapper accordingly */
       width: 10rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
         width: 15rem;
       }
