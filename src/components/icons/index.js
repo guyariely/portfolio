@@ -8,6 +8,7 @@ import IconGitHub from "./github"
 import IconBehance from "./behance"
 import IconExternal from "./external"
 import IconMail from "./mail"
+import IconNPM from "./NPM"
 
 // Utility function to grab Icons by name
 const Icon = ({ name, color }) => {
@@ -26,6 +27,8 @@ const Icon = ({ name, color }) => {
       return <IconExternal color={color} />
     case "mail":
       return <IconMail color={color} />
+    case "npm":
+      return <IconNPM color={color} />
     default:
       return null
   }

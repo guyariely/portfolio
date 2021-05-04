@@ -101,38 +101,47 @@ const StyledSocialProfile = styled.a`
   }
 `
 
-const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => {
+const Social = ({
+  width,
+  padding,
+  fontSize,
+  fontWeight,
+  withIcon,
+  filterMap = {},
+}) => {
   const { darkMode } = useContext(Context).state
 
   return (
     <StyledSocialWrapper itemCount={socialMedia.length}>
-      {socialMedia.map(({ name, url }, key) => {
-        return (
-          <StyledSocialProfile
-            key={key}
-            href={url}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            aria-label={name}
-            width={width}
-            padding={padding}
-            fontSize={fontSize}
-            fontWeight={fontWeight}
-          >
-            {withIcon ? (
-              <Icon
-                name={name}
-                color={
-                  darkMode
-                    ? darkTheme.colors.primary
-                    : lightTheme.colors.primary
-                }
-              />
-            ) : null}{" "}
-            {name}
-          </StyledSocialProfile>
-        )
-      })}
+      {socialMedia
+        .filter(({ name }) => !filterMap[name])
+        .map(({ name, url }, key) => {
+          return (
+            <StyledSocialProfile
+              key={key}
+              href={url}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              aria-label={name}
+              width={width}
+              padding={padding}
+              fontSize={fontSize}
+              fontWeight={fontWeight}
+            >
+              {withIcon ? (
+                <Icon
+                  name={name}
+                  color={
+                    darkMode
+                      ? darkTheme.colors.primary
+                      : lightTheme.colors.primary
+                  }
+                />
+              ) : null}{" "}
+              {name}
+            </StyledSocialProfile>
+          )
+        })}
     </StyledSocialWrapper>
   )
 }
@@ -143,6 +152,7 @@ Social.propTypes = {
   fontSize: PropTypes.string,
   fontWeight: PropTypes.string,
   withIcon: PropTypes.bool,
+  filterMap: PropTypes.object,
 }
 
 export default Social
