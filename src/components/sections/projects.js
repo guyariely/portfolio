@@ -130,6 +130,42 @@ const StyledProject = styled(motion.div)`
     flex-direction: ${({ position }) =>
       position % 2 !== 0 ? "row" : "row-reverse"};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
+    &.desktop {
+      margin-right: 5rem;
+      .noteworthy {
+        width: 20rem;
+      }
+
+      .screenshot {
+        margin-left: 2.5rem;
+      }
+    }
+    &.mobile {
+      margin-right: 2.5rem;
+      .screenshot {
+        width: 108rem !important;
+        height: 34rem !important;
+      }
+    }
+  }
+
+  &.mobile {
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      flex-direction: row;
+      max-width: 38rem;
+      max-height: 30rem;
+      .details {
+        margin-top: 0;
+        width: 100rem;
+      }
+      .screenshot {
+        margin-left: 5rem;
+        width: 98rem;
+      }
+    }
+  }
   .details {
     width: 100%;
     max-width: 25rem;
@@ -184,17 +220,47 @@ const StyledProject = styled(motion.div)`
   }
   .screenshot {
     width: 100%;
-    max-width: 25rem;
+    max-width: 28rem;
     height: 15rem;
     border-radius: ${({ theme }) => theme.borderRadius};
+    overflow: hidden;
     box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.16);
     transition: all 0.3s ease-out;
     &:hover {
       transform: translate3d(0px, -0.125rem, 0px);
       box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.32);
     }
-    @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      height: 18.75rem;
+    height: 100%;
+
+    &.scalendar {
+      height: 17rem;
+    }
+
+    &.filmless,
+    &.infocus {
+      max-width: 17rem;
+      border-radius: 1rem;
+    }
+
+    img {
+      object-fit: contain !important;
+    }
+  }
+  .screenshot.noteworthy,
+  .screenshot.scalendar,
+  .screenshot.finder {
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      max-height: 13.6rem;
+    }
+  }
+  .screenshot.scalendar {
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      width: 22.5rem;
+    }
+  }
+  .screenshot.finder {
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      width: 21.8rem;
     }
   }
 `
@@ -278,6 +344,9 @@ const Projects = ({ content }) => {
                 minTopValue={100}
               >
                 <StyledProject
+                  className={
+                    frontmatter.category === "Mobile App" ? "mobile" : "desktop"
+                  }
                   position={key + 1}
                   variants={pVariants}
                   animate={
@@ -339,7 +408,7 @@ const Projects = ({ content }) => {
                     onChange={() => setVisibleProject(frontmatter.position)}
                   >
                     <Img
-                      className="screenshot"
+                      className={`screenshot ${frontmatter.title.toLowerCase()}`}
                       fluid={frontmatter.screenshot.childImageSharp.fluid}
                     />
                   </VisibilitySensor>
