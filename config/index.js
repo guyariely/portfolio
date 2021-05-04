@@ -10,13 +10,12 @@ module.exports = {
   seoTitleSuffix: "Guy Ariely Portfolio", // SEO title syntax will be e.g. "Imprint - {seoTitleSuffix}"
   useCookieBar: false, // If you use Google Analytics and want to be GDPR-compliant, set it to true
   googleAnalyticsTrackingId: "", // e.g. UA-XXXXXX-X
-
   // -- THEME SETTINGS -----
   colors: {
     lightTheme: {
       primary: "#000000",
-      secondary: "#FFF4D9",
-      tertiary: "#F2F2F2",
+      secondary: "rgb(255, 233, 221)",
+      tertiary: "rgb(255, 233, 221)",
       text: "#000000",
       subtext: "#555555",
       background: "#FFFFFF",
@@ -27,12 +26,12 @@ module.exports = {
     },
     darkTheme: {
       primary: "#FAFAFA",
-      secondary: "#2A2926",
-      tertiary: "#252525",
+      secondary: "rgb(138 84 118 / 77%)",
+      tertiary: "rgb(138 84 118 / 77%)",
       text: "rgba(255, 255, 255, 0.87)",
       subtext: "#AAAAAA",
-      background: "#121212",
-      card: "#1C1C1C",
+      background: "#282c35",
+      card: "#282c35",
       scrollBar: "rgba(255, 255, 255, 0.5)",
       boxShadow: "rgba(0, 0, 0, 0.16)",
       boxShadowHover: "rgba(0, 0, 0, 0.32)",
